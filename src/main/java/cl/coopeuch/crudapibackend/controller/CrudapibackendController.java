@@ -5,6 +5,10 @@ import java.util.List;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -19,11 +23,6 @@ import cl.coopeuch.crudapibackend.enumerador.service.CrudapibackendService;
 import io.swagger.annotations.ApiOperation;
 import io.swagger.annotations.ApiResponse;
 import io.swagger.annotations.ApiResponses;
-
-import org.springframework.http.HttpStatus;
-import org.springframework.http.MediaType;
-import org.springframework.http.ResponseEntity;
-import org.springframework.validation.annotation.Validated;
 
 @RestController
 @RequestMapping("/api/crudapibackend")
@@ -64,7 +63,7 @@ public class CrudapibackendController {
 	 ***/
 	@ApiOperation(value = "Agregar Tarea")
 	@ApiResponses({ @ApiResponse(code = 200, message = "Se Agregar Tarea"),@ApiResponse(code = 404, message = "Error") })
-	@PostMapping(value ="agregarTarea/{tarea:.*}")
+	@PostMapping(value ="agregarTarea{tarea:.*}")
 	public ResponseEntity<String> agregarTarea(@Validated @RequestBody TareaDto tarea) {
 		log.info("agregarTarea: tarea "+ tarea );
 		return ResponseEntity.status(HttpStatus.OK).body(crudapibackendService.agregarTarea(tarea));
