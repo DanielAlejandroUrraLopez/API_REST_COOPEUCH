@@ -99,7 +99,7 @@ public class CrudapibackendController {
 	 ***/
 	@ApiOperation(value = "modificar tarea")
 	@ApiResponses({ @ApiResponse(code = 200, message = "modificar tarea"),@ApiResponse(code = 404, message = "Error") })
-	@PutMapping(value ="modificarTarea/{id:.*}/{tarea:.*}", produces = MediaType.APPLICATION_JSON_VALUE)
+	@PutMapping(value ="modificarTarea/{id:.*}{tarea:.*}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<String> modificarTarea(@PathVariable(required = true) int id,@Validated @RequestBody TareaDto tarea) {
 		log.info("modificarTarea: id: "+ id +" TareaDto: "+ tarea);
 		return ResponseEntity.status(HttpStatus.OK).body(crudapibackendService.modificarTarea(id,tarea));
